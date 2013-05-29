@@ -1,3 +1,25 @@
+<?php
+/*
+ * Cookie Cleaner, a simple script built to remove and invalidate all existing domain cookies
+ * Version: 1.0.1
+ * Copyright (C) 2012, 2013 Ciprian Popescu
+ * 
+ * This file is part of Cookie Cleaner
+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +32,7 @@
 <body>
 
 <?php
-error_reporting(E_ALL);
+error_reporting(0); // change "0" to "E_ALL" (without quotes) to debug
 
 $cookie_domain = '.domain.ext'; // your cookie domain (e.g. .google.com)
 ?>
@@ -73,7 +95,7 @@ function createCookie(name,value,days) {
 	if(days) {
 		var date = new Date();
 		date.setTime(date.getTime() + (days*24*60*60*1000));
-		var expires = "; expires="+date.toGMTString();
+		var expires = "; expires=" + date.toGMTString();
 	}
 	else var expires = "";
 	document.cookie = name + "=" + value + expires + "; path=/";
